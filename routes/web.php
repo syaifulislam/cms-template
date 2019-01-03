@@ -42,4 +42,6 @@ Route::group(['middleware'=>'SentinelAuth'], function () {
     Route::get('user', 'UserController@index');
     Route::post('user', 'UserController@store');
     Route::get('user/{id}', 'UserController@show');
+    Route::get('user-delete/{id}', 'UserController@delete');
+    Route::post('user/{id}', 'UserController@update');
 });

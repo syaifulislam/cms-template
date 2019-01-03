@@ -70,11 +70,11 @@
                         </div>
                     </div> -->
                     {{-- sign up button --}}
-                    {{-- <div class="form-group m-b-0">
+                    <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
                             <p>Don't have an account? <a href="/register" class="text-primary m-l-5"><b>Sign Up</b></a></p>
                         </div>
-                    </div> --}}
+                    </div>
                 </form>
                 <form class="form-horizontal" id="recoverform" action="index.html">
                     <div class="form-group ">

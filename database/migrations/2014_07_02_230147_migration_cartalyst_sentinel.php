@@ -30,13 +30,13 @@ class MigrationCartalystSentinel extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('activations');
-        Schema::dropIfExists('persistences');
-        Schema::dropIfExists('reminders');
-        Schema::dropIfExists('roles');
-        Schema::dropIfExists('role_users');
-        Schema::dropIfExists('throttle');
-        Schema::dropIfExists('users');
+        // Schema::dropIfExists('activations');
+        // Schema::dropIfExists('persistences');
+        // Schema::dropIfExists('reminders');
+        // Schema::dropIfExists('roles');
+        // Schema::dropIfExists('role_users');
+        // Schema::dropIfExists('throttle');
+        // Schema::dropIfExists('users');
 
         Schema::create('activations', function (Blueprint $table) {
             $table->increments('id');
