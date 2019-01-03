@@ -53,7 +53,13 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">List<span style="padding-left: 1150px;"><button data-toggle="modal" data-target="#responsive-modal" type="button" class="btn waves-effect waves-light btn-primary">Create</button></span></h4>
+                                <div class="row" style="padding-bottom: 10px;">
+                                    <div class="col-md-11">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button data-toggle="modal" style="float:right;" data-target="#responsive-modal" type="button" class="btn waves-effect waves-light btn-primary btn-rounded">Create</button>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table color-bordered-table info-bordered-table">
                                         <thead>

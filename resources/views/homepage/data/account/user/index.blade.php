@@ -19,6 +19,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -53,7 +54,18 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">List<span style="padding-left: 1150px;"><button data-toggle="modal" data-target="#responsive-modal" type="button" class="btn waves-effect waves-light btn-primary">Create</button></span></h4>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <form action="/user">
+                                            <div class="form-group">
+                                                <input type="text" name="global_search" class="form-control" placeholder="Find Me !" value="{{$search}}">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-1 offset-md-7">
+                                        <button data-toggle="modal" style="float:right;" data-target="#responsive-modal" type="button" class="btn waves-effect waves-light btn-primary btn-rounded">Create</button>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table color-bordered-table info-bordered-table">
                                         <thead>
@@ -74,7 +86,19 @@
                                                     <td>{{$item->last_name}}</td>
                                                     <td>{{\Carbon\Carbon::parse($item->created_at)->format('d F Y H:i:s')}}</td>
                                                     <td>{{$item->last_login ? \Carbon\Carbon::parse($item->last_login)->format('d F Y H:i:s'):''}}</td>
-                                                    <td><button type="button" onclick="show({{$item->id}})" class="btn waves-effect waves-light btn-sm btn-success">Edit</button></td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-success btn-rounded dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Action
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" onclick="show({{$item->id}})">Edit</a>
+                                                                @if (Sentinel::getUser()->id != $item->id)
+                                                                    <a class="dropdown-item" onclick="del({{$item->id}})">Delete</a>                                                            
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -191,6 +215,7 @@
     <script src="/plugins/morrisjs/morris.min.js"></script>
     <!-- ============================================================== -->
     <script src="/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="/plugins/sweetalert/sweetalert.min.js"></script>
     <script>
     function show(id){
         $.ajax({
@@ -203,6 +228,32 @@
                 $('#form-edit').attr("action",'/user/'+id);
                 $('#responsive-modal-edit').modal();
             }
+        });
+    }
+    function del(id){
+        swal({   
+            title: "Are you sure?",   
+            text: "You will remove this user !",   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#DD6B55",   
+            confirmButtonText: "Yes!",   
+            cancelButtonText: "No!",   
+            closeOnConfirm: false,   
+            closeOnCancel: false 
+        }, function(isConfirm){   
+            if (isConfirm) {     
+                // $.ajax({
+                //     type:'GET',
+                //     url:'/user-delete/'+id,
+                //     success:function(data) {
+                //         swal(data.header, data.message, data.status);
+                //     }
+                // });
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            } else {     
+                swal("Cancelled", "This user is safe :)", "error");   
+            } 
         });
     }
     </script>
