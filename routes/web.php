@@ -37,6 +37,7 @@ Route::group(['middleware'=>'SentinelAuth'], function () {
     Route::post('category', 'CategoryController@store');
     Route::post('category/{id}', 'CategoryController@update');
     Route::get('sub-category', 'SubCategoryController@index');
+    Route::post('sub-category', 'SubCategoryController@store');
 
     // user
     Route::get('user', 'UserController@index');
